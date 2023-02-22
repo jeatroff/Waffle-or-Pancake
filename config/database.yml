@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: waffle_pancake_production
-  username: waffle_pancake
-  password: <%= ENV["WAFFLE_PANCAKE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
