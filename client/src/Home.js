@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from 'react-router-dom'
 
 function Home({ user, setUser }) {
@@ -14,6 +14,10 @@ function Home({ user, setUser }) {
 
     function handlePasswordChange(e){
         SetPassword(e.target.value)
+    }
+
+    function handleButton(e) {
+        history.push("/newgame")
     }
 
     function onSubmit(e){
@@ -43,7 +47,9 @@ function Home({ user, setUser }) {
     return (
         user ? (
         <div>
-            <h1>Welcome to Waffle or Pancake!</h1>
+            <h1>Waffle or Pancake</h1>
+            <h2>A guessing game for up to five players</h2>
+            <button onClick={handleButton}>New Game</button>
         </div>
         ) : (
             <div className="form">

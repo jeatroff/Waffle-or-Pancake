@@ -19,6 +19,8 @@ function NavBar({ setUser, user }) {
     user ? (
         <nav>
             <NavLink exact to="/">Home</NavLink>
+            &emsp;
+            <NavLink exact to="/newgame">New Game</NavLink>
             <button onClick={handleLogoutClick}>Logout</button>
         </nav>
     ) : (

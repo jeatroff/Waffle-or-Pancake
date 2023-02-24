@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import Signup from "./Signup";
 import NavBar from "./NavBar";
+import NewGame from "./NewGame";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -25,6 +26,7 @@ function App() {
         <Switch>
           <Route exact path="/"><Home user={user} setUser={setUser}/></Route>
           <Route exact path="/signup"><Signup setUser={setUser}/></Route>
+          <Route exact path="/newgame"><NewGame user={user}/></Route>
         </Switch>
       </div>
     </BrowserRouter>
