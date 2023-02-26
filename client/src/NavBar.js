@@ -21,6 +21,8 @@ function NavBar({ setUser, user }) {
             <NavLink exact to="/">Home</NavLink>
             &emsp;
             <NavLink exact to="/newgame">New Game</NavLink>
+            &emsp;
+            <NavLink exact to="/gamelist">Your Games</NavLink>
             <button onClick={handleLogoutClick}>Logout</button>
         </nav>
     ) : (

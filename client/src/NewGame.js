@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
+import { useHistory } from 'react-router-dom'
 
-function NewGame({user}) {
+function NewGame({ user, setGame, setGameList}) {
     const [userList, setUserList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("")
     const [gameUserList, setGameUserList] = useState([])
+    const [errors, setErrors] = useState([])
+    const MAX_PLAYERS = 5
+    const history = useHistory()
 
     useEffect(() => {
         fetch("/users").then((r) => {
@@ -18,7 +22,7 @@ function NewGame({user}) {
             });
           }
         });
-      }, []);
+      }, [user]);
 
     const userListFiltered = userList.filter((user) => (
         user.username.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,7 +33,7 @@ function NewGame({user}) {
     }
 
     function addUser(new_user) {
-        if(gameUserList.length >= 5) { //Magic Number: Max number of players
+        if(gameUserList.length >= MAX_PLAYERS) {
             return
         }
         let newGameUserList = [...gameUserList, new_user]
@@ -59,6 +63,59 @@ function NewGame({user}) {
         setGameUserList([...newGameUserList])
     }
 
+    // TODO: post the UserGame objects
+    // increment num_games for each user, patch them, then redirect to Game page
+    function createGame(e) {
+        if (gameUserList.length < 2) {
+            setErrors("A new game must have at least two players.")
+            return
+        }
+
+        const new_game = {
+            leader_name: gameUserList[0].username,
+            player_1: gameUserList[1].username,
+            player_2: gameUserList.length > 2 ? gameUserList[2].username : null,
+            player_3: gameUserList.length > 3 ? gameUserList[3].username : null,
+            player_4: gameUserList.length > 4 ? gameUserList[4].username : null
+        }
+
+        fetch(`/games`,{
+            method:'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(new_game)
+        })
+        .then(res => {
+            if(res.ok) {
+                res.json().then(game => {
+                    setGame(game)
+
+                    gameUserList.map((user) => (
+                        fetch(`/usergames`,{
+                            method:'POST',
+                            headers: {'Content-Type': 'application/json'},
+                            body: JSON.stringify({
+                                user_id: user.id,
+                                game_id: game.id,
+                            })
+                        })
+                    ))
+
+                    fetch("/games").then((r) => {
+                        if (r.ok) {
+                          r.json().then((games) => {
+                            setGameList(games)
+                          });
+                        }
+                    });
+
+                    history.push("/game")
+                })
+            } else {
+                res.json().then(json => setErrors(json.error))
+            }
+        })
+    }
+
     return (
         <div className="newGameForm">
             <h1>Create a New Game</h1>
@@ -75,8 +132,8 @@ function NewGame({user}) {
                     {game_user !== user ? <button onClick={() => removeUser(game_user)}>X</button> : ""}
                 </p>  
             ))}
-            <button>Create Game</button>
-            <p></p>
+            <button onClick={createGame}>Create Game</button>
+            <p>{errors}</p>
             <input placeholder="Search for a User" name='userSearch' value={searchTerm} onChange={handleSearchTermChange} />
             {userListFiltered.map((user) => (
                 <p onClick={() => addUser(user)}>{user.username}</p>

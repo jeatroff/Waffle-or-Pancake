@@ -1,6 +1,5 @@
-import { useHistory } from 'react-router-dom'
 import { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function Home({ user, setUser }) {
     const [username, SetUsername] = useState("")
@@ -50,6 +49,22 @@ function Home({ user, setUser }) {
             <h1>Waffle or Pancake</h1>
             <h2>A guessing game for up to five players</h2>
             <button onClick={handleButton}>New Game</button>
+            <h4>Instructions</h4>
+            <p>The leader of a game thinks of a noun. It can be anything they want.</p>
+            <p>
+                They then have to answer a simple question: is their answer more like a waffle,
+                or is it more like a pancake? Everyone gets to see the answer.
+            </p>
+            <p>
+                From there, the other players take turns suggesting additional ideas. The leader
+                must decide whether the solution is more like their previous answer or the new 
+                idea. Is a swordfish is more like Mount Everest or a ballerina? Is Santa Claus 
+                more like sweatpants or true love? The leader might have to make some tough decisions!
+            </p>
+            <p>
+                The goal of Waffle or Pancake is to use the leader's answers to hone in on the solution. 
+                The player who finally guesses it is the winner!
+            </p>
         </div>
         ) : (
             <div className="form">

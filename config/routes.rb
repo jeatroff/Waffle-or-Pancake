@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
   get '/users', to: 'users#index'
+  get '/games', to: 'games#index'
+  post '/games', to: 'games#create'
+  post '/usergames', to: 'user_games#create'
 end
