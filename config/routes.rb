@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   get '/users', to: 'users#index'
   get '/games', to: 'games#index'
   post '/games', to: 'games#create'
+  patch '/games', to: 'games#update'
   post '/usergames', to: 'user_games#create'
+  post '/turns', to: 'turns#create'
+  patch '/turns', to: 'turns#update'
+  delete '/turns', to: 'turns#destroy'
 end

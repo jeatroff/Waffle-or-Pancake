@@ -13,6 +13,12 @@ class GamesController < ApplicationController
         render json: game, status: :ok
     end
 
+    def update
+        game = Game.find(params[:id])
+        game.update(game_params)
+        render json: game, status: :ok
+    end
+
     def destroy
         game = Game.find(params[:id])
         game.destroy
