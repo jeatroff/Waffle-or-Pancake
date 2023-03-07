@@ -63,7 +63,6 @@ function NewGame({ user, setGame, gameList, setGameList}) {
         setGameUserList([...newGameUserList])
     }
 
-    // TODO: increment num_games for each user and patch them- also update user accordingly
     function createGame(e) {
         if (gameUserList.length < 2) {
             setErrors("A new game must have at least two players.")

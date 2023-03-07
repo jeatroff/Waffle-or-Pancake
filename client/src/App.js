@@ -13,12 +13,16 @@ function App() {
   const [user, setUser] = useState(null);
   const [game, setGame] = useState(null);
   const [gameList, setGameList] = useState([])
+  const [numGames, setNumGames] = useState(0)
+  const [numWins, setNumWins] = useState(0)
 
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
+          // setNumGames(user.num_games)
+          // setNumWins(user.num_wins)
         });
       }
     });
@@ -44,7 +48,7 @@ function App() {
           <Route exact path="/newgame"><NewGame user={user} setGame={setGame} gameList={gameList} setGameList={setGameList}/></Route>
           <Route exact path="/gamelist"><GameList user={user} gameList={gameList} setGame={setGame} setGameList={setGameList}/></Route>
           <Route exact path="/game"><Game user={user} game={game} gameList={gameList} setGameList={setGameList}/></Route>
-          <Route exact path="/settings"><Settings /></Route>
+          <Route exact path="/settings"><Settings user={user} numGames={numGames} numWins={numWins}/></Route>
         </Switch>
       </div>
     </BrowserRouter>

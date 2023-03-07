@@ -130,7 +130,7 @@ function Game({ game, user, gameList, setGameList }) {
         })
     }
 
-    // TODO: update the winner's games_won stat
+    // Fix num_wins, add useState variables for them
     function handleSolved() {
         fetch(`/turns/${turnList[turnList.length-1].id}`,{
             method:'PATCH',
@@ -140,10 +140,33 @@ function Game({ game, user, gameList, setGameList }) {
         .then(res => {
             if(res.ok) {
                 res.json().then((turn) => {
+                    // game.users.map((player) => (
+                    //     player.id === turn.user_id ? (
+                    //         fetch(`/users/${player.id}`,{
+                    //             method:'PATCH',
+                    //             headers: {'Content-Type': 'application/json'},
+                    //             body: JSON.stringify({
+                    //                 num_games: player.num_games+1,
+                    //                 num_wins: player.num_wins+1
+                    //             })
+                    //         })
+                    //     ) : (
+                    //         fetch(`/users/${player.id}`,{
+                    //             method:'PATCH',
+                    //             headers: {'Content-Type': 'application/json'},
+                    //             body: JSON.stringify({
+                    //                 num_games: player.num_games+1
+                    //             })
+                    //         })
+                    //     )
+                    // ))
+
+
                     let tempTurnList = turnList
                     tempTurnList[turnList.length-1] = turn
                     setTurnList(tempTurnList)
                     game.turns = turnList
+
                     showModal()
                 });
             }

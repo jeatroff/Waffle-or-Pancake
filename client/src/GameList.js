@@ -8,7 +8,6 @@ function GameList({ gameList, setGame, setGameList }) {
         history.push("/game")
     }
 
-    // TODO: Figure out why display isn't updating properly upon deletion
     function deleteGame(game) {
         fetch(`/games/${game.id}`,{
             method:'DELETE',
@@ -20,7 +19,7 @@ function GameList({ gameList, setGame, setGameList }) {
                 let tempGameList = gameList
                 tempGameList.splice(i, 1)
                 console.log(tempGameList)
-                setGameList(tempGameList)
+                setGameList([...tempGameList])
             }
         })
     }
