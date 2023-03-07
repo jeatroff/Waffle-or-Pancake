@@ -15,14 +15,22 @@ function App() {
   const [gameList, setGameList] = useState([])
   const [numGames, setNumGames] = useState(0)
   const [numWins, setNumWins] = useState(0)
+  let avatarList = []
 
   useEffect(() => {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => {
           setUser(user)
-          // setNumGames(user.num_games)
-          // setNumWins(user.num_wins)
+          setNumGames(user.num_games)
+          setNumWins(user.num_wins)
+        });
+      }
+    });
+    fetch("/avatars").then((r) => {
+      if (r.ok) {
+        r.json().then((avatars) => {
+          avatarList = avatars
         });
       }
     });

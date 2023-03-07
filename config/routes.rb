@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   post '/turns', to: 'turns#create'
   patch '/turns', to: 'turns#update'
   delete '/turns', to: 'turns#destroy'
+  get '/avatars', to: 'avatars#index'
 end

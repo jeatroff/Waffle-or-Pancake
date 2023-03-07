@@ -5,4 +5,7 @@ class User < ApplicationRecord
     has_many :user_games
     has_many :games, through: :user_games
     has_many :turns
+    belongs_to :avatar
+
+    attribute :avatar_id, :integer, default: 1
 end

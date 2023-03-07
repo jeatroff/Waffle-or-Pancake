@@ -140,26 +140,26 @@ function Game({ game, user, gameList, setGameList }) {
         .then(res => {
             if(res.ok) {
                 res.json().then((turn) => {
-                    // game.users.map((player) => (
-                    //     player.id === turn.user_id ? (
-                    //         fetch(`/users/${player.id}`,{
-                    //             method:'PATCH',
-                    //             headers: {'Content-Type': 'application/json'},
-                    //             body: JSON.stringify({
-                    //                 num_games: player.num_games+1,
-                    //                 num_wins: player.num_wins+1
-                    //             })
-                    //         })
-                    //     ) : (
-                    //         fetch(`/users/${player.id}`,{
-                    //             method:'PATCH',
-                    //             headers: {'Content-Type': 'application/json'},
-                    //             body: JSON.stringify({
-                    //                 num_games: player.num_games+1
-                    //             })
-                    //         })
-                    //     )
-                    // ))
+                    game.users.map((player) => (
+                        player.id === turn.user_id ? (
+                            fetch(`/users/${player.id}`,{
+                                method:'PATCH',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({
+                                    num_games: player.num_games+1,
+                                    num_wins: player.num_wins+1
+                                })
+                            })
+                        ) : (
+                            fetch(`/users/${player.id}`,{
+                                method:'PATCH',
+                                headers: {'Content-Type': 'application/json'},
+                                body: JSON.stringify({
+                                    num_games: player.num_games+1
+                                })
+                            })
+                        )
+                    ))
 
 
                     let tempTurnList = turnList

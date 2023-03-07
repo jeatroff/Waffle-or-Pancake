@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :num_games)
+        params.permit(:username, :password, :num_games, :num_wins, :avatar_id)
     end
 
     def record_not_found
