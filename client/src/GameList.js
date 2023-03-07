@@ -1,23 +1,28 @@
 import { useHistory } from 'react-router-dom'
-import { useState, useEffect } from 'react'
 
-function GameList({ user, gameList, setGame, setGameList }) {
-    const [gameListDisplay, setGameListDisplay] = useState([])
+function GameList({ gameList, setGame, setGameList }) {
     const history = useHistory()
-
-    useEffect(() => (
-        setGameListDisplay(gameList && user && user.games ? gameList.filter(a => user.games.some(b => a.id === b.id)) : [])
-    ), [user, gameList])
 
     function handleClick(game) {
         setGame(game)
         history.push("/game")
     }
 
-    // Run DELETE request and then setGameList to gameList with game filtered out
+    // TODO: Figure out why display isn't updating properly upon deletion
     function deleteGame(game) {
-        console.log("Deleting game")
-        console.log(game)
+        fetch(`/games/${game.id}`,{
+            method:'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        })
+        .then(res => {
+            if(res.ok) {
+                let i = gameList.indexOf(game)
+                let tempGameList = gameList
+                tempGameList.splice(i, 1)
+                console.log(tempGameList)
+                setGameList(tempGameList)
+            }
+        })
     }
     
     return(
@@ -25,7 +30,7 @@ function GameList({ user, gameList, setGame, setGameList }) {
             <h1>Your Games</h1>
             <div className="scroll">
                 <ul>
-                    {gameListDisplay ? gameListDisplay.map((game) => (
+                    {gameList ? gameList.map((game) => (
                         <li>
                             <t onClick={() => handleClick(game)}>
                                 Leader: {game.leader_name}, Players: {game.player_1}

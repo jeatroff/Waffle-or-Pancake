@@ -22,15 +22,17 @@ function App() {
         });
       }
     });
+  }, []);
 
+  useEffect(() => {
     fetch("/games").then((r) => {
       if (r.ok) {
-        r.json().then((games) => {
-          setGameList(games)
+        r.json().then((allGames) => {
+          setGameList(user.games ? allGames.filter(a => user.games.some(b => a.id === b.id)) : [])
         });
       }
     });
-  }, []);
+  }, [user]);
 
   return (
     <BrowserRouter>
@@ -39,9 +41,9 @@ function App() {
         <Switch>
           <Route exact path="/"><Home user={user} setUser={setUser}/></Route>
           <Route exact path="/signup"><Signup setUser={setUser}/></Route>
-          <Route exact path="/newgame"><NewGame user={user} setGame={setGame} setGameList={setGameList}/></Route>
+          <Route exact path="/newgame"><NewGame user={user} setGame={setGame} gameList={gameList} setGameList={setGameList}/></Route>
           <Route exact path="/gamelist"><GameList user={user} gameList={gameList} setGame={setGame} setGameList={setGameList}/></Route>
-          <Route exact path="/game"><Game user={user} game={game}/></Route>
+          <Route exact path="/game"><Game user={user} game={game} gameList={gameList} setGameList={setGameList}/></Route>
           <Route exact path="/settings"><Settings /></Route>
         </Switch>
       </div>

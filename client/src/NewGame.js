@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom'
 
-function NewGame({ user, setGame, setGameList}) {
+function NewGame({ user, setGame, gameList, setGameList}) {
     const [userList, setUserList] = useState([]);
     const [searchTerm, setSearchTerm] = useState("")
     const [gameUserList, setGameUserList] = useState([])
@@ -98,15 +98,7 @@ function NewGame({ user, setGame, setGameList}) {
                             })
                         })
                     ))
-
-                    fetch("/games").then((r) => {
-                        if (r.ok) {
-                          r.json().then((games) => {
-                            setGameList(games)
-                          });
-                        }
-                    });
-
+                    setGameList(gameList ? [...gameList, game] : [game])
                     history.push("/game")
                 })
             } else {
