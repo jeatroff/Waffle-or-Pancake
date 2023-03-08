@@ -9,7 +9,7 @@ puts "Seeding profile pictures..."
 Avatar.create!([
     {image: "https://api.dicebear.com/5.x/bottts/svg?seed=1&backgroundColor=c0aede", id: 1},
     {image: "https://api.dicebear.com/5.x/bottts/svg?seed=2&backgroundColor=ffd5dc", id: 2},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=3&backgroundColor=faf290", id: 3},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=3&backgroundColor=f7f3b9", id: 3},
     {image: "https://api.dicebear.com/5.x/bottts/svg?seed=10&backgroundColor=d1d4f9", id: 4},
     {image: "https://api.dicebear.com/5.x/bottts/svg?seed=5&backgroundColor=93d1b2", id: 5},
     {image: "https://api.dicebear.com/5.x/bottts/svg?seed=6&backgroundColor=f8bfe8", id: 6},
