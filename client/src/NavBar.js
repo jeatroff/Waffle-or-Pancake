@@ -17,7 +17,7 @@ function NavBar({ setUser, user }) {
 
   return (
     user ? (
-        <nav>
+        <nav id="navbar">
             <NavLink exact to="/">Home</NavLink>
             &emsp;
             <NavLink exact to="/newgame">New Game</NavLink>
@@ -25,7 +25,7 @@ function NavBar({ setUser, user }) {
             <NavLink exact to="/gamelist">Your Games</NavLink>
             &emsp;
             <NavLink exact to="/settings">Profile</NavLink>
-            &emsp;&emsp;
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
             <img src={user.avatar.image} width="30"/>&ensp;{user.username}&ensp;
             <button onClick={handleLogoutClick}>Logout</button>
         </nav>

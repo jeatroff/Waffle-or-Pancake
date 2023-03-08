@@ -1,8 +1,21 @@
+import { useHistory } from "react-router-dom"
+
 function Settings ({ user, setUser, numGames, numWins, avatarList }) {
     const IMG_SIZE = "80"
+    const history = useHistory()
 
     function handleDelete(e) {
-        return
+        fetch(`/users/${user.id}`, {
+            method: "DELETE",
+        }).then((res => {
+            if (res.ok){
+                fetch("/logout", {
+                    method: "DELETE"
+                })
+                setUser(null)
+                history.push("/")
+            }
+        }))
     }
 
     function changeAvatar(avatar) {

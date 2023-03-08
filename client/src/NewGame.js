@@ -113,8 +113,8 @@ function NewGame({ user, setGame, gameList, setGameList}) {
 
             {gameUserList.map((game_user) => (
                 <p>
-                    {gameUserList.at(0) === game_user ? "" : <button onClick={() => moveUserUp(game_user)}>Up</button>}
-                    {gameUserList.at(-1) === game_user ? "" : <button onClick={() => moveUserDown(game_user)}>Down</button>}
+                    {gameUserList.at(0) === game_user ? "" : <button onClick={() => moveUserUp(game_user)}>↑</button>}
+                    {gameUserList.at(-1) === game_user ? "" : <button onClick={() => moveUserDown(game_user)}>↓</button>}
                     {gameUserList.length > 1 ? " " : ""}
                     {game_user.username}
                     {gameUserList.at(0) === game_user ? " (Leader)" : ""}
