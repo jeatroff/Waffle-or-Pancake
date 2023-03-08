@@ -26,7 +26,7 @@ function NavBar({ setUser, user }) {
             &emsp;
             <NavLink exact to="/settings">Profile</NavLink>
             &emsp;&emsp;
-            {user.username}&ensp;
+            <img src={user.avatar.image} width="30"/>&ensp;{user.username}&ensp;
             <button onClick={handleLogoutClick}>Logout</button>
         </nav>
     ) : (

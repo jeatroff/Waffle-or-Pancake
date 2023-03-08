@@ -192,7 +192,7 @@ function Game({ game, user, gameList, setGameList }) {
                     <div>
                         <p><b>{game.leader_name}</b>: It is more like {turn.old_guess}.</p>
                         {turn.new_guess ?
-                            <p><b>{userList.find(user => user.id === turn.user_id).username}</b>: Is it more like {turn.old_guess} or {turn.new_guess}?</p>
+                            <p><b><img src={userList.find(user => user.id === turn.user_id).avatar.image} width="30"/>&ensp;{userList.find(user => user.id === turn.user_id).username}</b>: Is it more like {turn.old_guess} or {turn.new_guess}?</p>
                         : null}
                     </div>
                 )) : null}

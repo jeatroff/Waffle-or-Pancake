@@ -109,24 +109,24 @@ function NewGame({ user, setGame, gameList, setGameList}) {
     return (
         <div className="newGameForm">
             <h1>Create a New Game</h1>
-            <h4>Selected Users ({gameUserList.length}/5):</h4>
+            <b>Selected Users ({gameUserList.length}/5):</b>
 
             {gameUserList.map((game_user) => (
                 <p>
                     {gameUserList.at(0) === game_user ? "" : <button onClick={() => moveUserUp(game_user)}>Up</button>}
                     {gameUserList.at(-1) === game_user ? "" : <button onClick={() => moveUserDown(game_user)}>Down</button>}
-                    &ensp;
+                    {gameUserList.length > 1 ? " " : ""}
                     {game_user.username}
                     {gameUserList.at(0) === game_user ? " (Leader)" : ""}
                     &ensp;
                     {game_user !== user ? <button onClick={() => removeUser(game_user)}>X</button> : ""}
                 </p>  
             ))}
-            <button onClick={createGame}>Create Game</button>
+            <button className="custom-btn btn-1" onClick={createGame}>Create Game</button>
             <p>{errors}</p>
             <input placeholder="Search for a User" name='userSearch' value={searchTerm} onChange={handleSearchTermChange} />
             {userListFiltered.map((user) => (
-                <p onClick={() => addUser(user)}>{user.username}</p>
+                <p onClick={() => addUser(user)}><img src={user.avatar.image} width="30"/>&ensp;{user.username}</p>
             ))}
         </div>
     )

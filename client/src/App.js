@@ -15,7 +15,7 @@ function App() {
   const [gameList, setGameList] = useState([])
   const [numGames, setNumGames] = useState(0)
   const [numWins, setNumWins] = useState(0)
-  let avatarList = []
+  const [avatarList, setAvatarList] = useState([])
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -30,7 +30,7 @@ function App() {
     fetch("/avatars").then((r) => {
       if (r.ok) {
         r.json().then((avatars) => {
-          avatarList = avatars
+          setAvatarList([...avatars])
         });
       }
     });
@@ -56,7 +56,7 @@ function App() {
           <Route exact path="/newgame"><NewGame user={user} setGame={setGame} gameList={gameList} setGameList={setGameList}/></Route>
           <Route exact path="/gamelist"><GameList user={user} gameList={gameList} setGame={setGame} setGameList={setGameList}/></Route>
           <Route exact path="/game"><Game user={user} game={game} gameList={gameList} setGameList={setGameList}/></Route>
-          <Route exact path="/settings"><Settings user={user} numGames={numGames} numWins={numWins}/></Route>
+          <Route exact path="/settings"><Settings user={user} setUser={setUser} numGames={numGames} numWins={numWins} avatarList={avatarList}/></Route>
         </Switch>
       </div>
     </BrowserRouter>

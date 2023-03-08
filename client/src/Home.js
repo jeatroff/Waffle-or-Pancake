@@ -48,8 +48,10 @@ function Home({ user, setUser }) {
         <div>
             <h1>Waffle or Pancake</h1>
             <h2>A guessing game for up to five players</h2>
-            <button onClick={handleButton}>New Game</button>
-            <h4>Instructions</h4>
+            <div style={{textAlign: "center"}}>
+                <button className="custom-btn btn-1" onClick={handleButton}>New Game</button>
+            </div>
+            <h3>Instructions</h3>
             <p>The leader of a game thinks of a noun. It can be anything they want.</p>
             <p>
                 They then have to answer a simple question: is their answer more like a waffle,
@@ -76,7 +78,7 @@ function Home({ user, setUser }) {
                     <div></div>
                     <input placeholder="Password" type='password' name='password' value={password} onChange={(e) => handlePasswordChange(e)} />
                     <div></div>
-                    <input type='submit' value='Log In' />
+                    <input className="custom-btn btn-1" type='submit' value='Log In' />
                 </form>
                 <h3>Don't have an account yet?</h3>
                 <Link exact="true" to="/signup">Sign up now!</Link>

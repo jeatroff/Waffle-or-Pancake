@@ -7,14 +7,14 @@ Turn.destroy_all
 
 puts "Seeding profile pictures..."
 Avatar.create!([
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=1", id: 1},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=2", id: 2},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=3", id: 3},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=4", id: 4},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=5", id: 5},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=6", id: 6},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=7", id: 7},
-    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=8", id: 8},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=1&backgroundColor=c0aede", id: 1},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=2&backgroundColor=ffd5dc", id: 2},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=3&backgroundColor=faf290", id: 3},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=10&backgroundColor=d1d4f9", id: 4},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=5&backgroundColor=93d1b2", id: 5},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=6&backgroundColor=f8bfe8", id: 6},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=Felix&backgroundColor=b6e3f4", id: 7},
+    {image: "https://api.dicebear.com/5.x/bottts/svg?seed=8&backgroundColor=ffdfbf", id: 8},
 ])
 
 
