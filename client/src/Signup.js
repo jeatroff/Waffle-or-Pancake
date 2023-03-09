@@ -53,7 +53,7 @@ function Signup({setUser}) {
                 <div></div>
                 <input placeholder="Password" type='password' name='password' value={password} onChange={e => handlePasswordChange(e)} />
                 <div></div>
-                <input type='submit' value='Submit' />
+                <input className="custom-btn btn-1" type='submit' value='Submit' />
             </form>
             <h3>Already have an account?</h3>
             <Link exact="true" to="/">Log in here!</Link>

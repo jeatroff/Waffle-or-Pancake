@@ -12,4 +12,13 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
+  get '/users', to: 'users#index'
+  get '/games', to: 'games#index'
+  post '/games', to: 'games#create'
+  patch '/games', to: 'games#update'
+  post '/usergames', to: 'user_games#create'
+  post '/turns', to: 'turns#create'
+  patch '/turns', to: 'turns#update'
+  delete '/turns', to: 'turns#destroy'
+  get '/avatars', to: 'avatars#index'
 end
